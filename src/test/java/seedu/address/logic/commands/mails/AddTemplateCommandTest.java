@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyCrm;
@@ -22,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.job.Job;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
 import seedu.address.model.products.Product;
 import seedu.address.testutil.TemplateBuilder;
@@ -55,6 +57,14 @@ class AddTemplateCommandTest {
             ) -> addCommand.execute(modelStub));
     }
 
+    @Test
+    public void type() {
+        Template validTemplate = new TemplateBuilder().build();
+        AddTemplateCommand addCommand = new AddTemplateCommand(validTemplate);
+
+        assertEquals(addCommand.getType(), CommandType.TEMPLATE);
+        assertNotEquals(addCommand.getType(), CommandType.MAIL);
+    }
     @Test
     public void equals() {
         Template alice = new TemplateBuilder().withSubject("To Alice").build();
@@ -124,6 +134,11 @@ class AddTemplateCommandTest {
         }
 
         @Override
+        public void addMail(Mail mail) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addJob(Job job) {
 
         }
@@ -169,6 +184,11 @@ class AddTemplateCommandTest {
         }
 
         @Override
+        public void deleteMail(Mail target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setContact(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
@@ -204,6 +224,11 @@ class AddTemplateCommandTest {
         }
 
         @Override
+        public ObservableList<Mail> getFilteredMailList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Product> getFilteredProductList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -220,6 +245,11 @@ class AddTemplateCommandTest {
 
         @Override
         public void updateFilteredTemplateList(Predicate<Template> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMailList(Predicate<Mail> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

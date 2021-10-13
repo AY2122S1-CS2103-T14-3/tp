@@ -17,6 +17,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.history.History;
 import seedu.address.model.job.Job;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
 import seedu.address.model.products.Product;
 import seedu.address.storage.Storage;
@@ -72,6 +73,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Template> getFilteredTemplateList() {
         return model.getFilteredTemplateList();
+    }
+
+    @Override
+    public ObservableList<Mail> getFilteredMailList() {
+        return model.getFilteredMailList();
     }
 
     @Override

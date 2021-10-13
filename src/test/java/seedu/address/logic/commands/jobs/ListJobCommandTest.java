@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.jobs;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showTemplateAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEMPLATE;
 import static seedu.address.testutil.TypicalTemplates.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,9 +29,4 @@ public class ListJobCommandTest {
         assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showTemplateAtIndex(model, INDEX_FIRST_TEMPLATE);
-        assertCommandSuccess(new ListJobCommand(), model, ListJobCommand.MESSAGE_SUCCESS, expectedModel);
-    }
 }

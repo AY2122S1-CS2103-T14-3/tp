@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all contacts in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindContactCommand extends Command {
@@ -35,7 +35,7 @@ public class FindContactCommand extends Command {
         requireNonNull(model);
         model.updateFilteredContactList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredContactList().size()),
+                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()),
                 COMMAND_TYPE);
     }
 

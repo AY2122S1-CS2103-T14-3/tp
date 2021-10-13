@@ -14,6 +14,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.contact.tag.Tag;
+import seedu.address.model.job.JobDeliveryDate;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.mail.Body;
 import seedu.address.model.mail.Subject;
@@ -169,6 +170,21 @@ public class ParserUtil {
             throw new ParseException(JobDescription.MESSAGE_CONSTRAINTS);
         }
         return new JobDescription(trimmedJobDescription);
+    }
+
+    /**
+     * Parses a {@code String deliveryDate} into an {@code JobDeliveryDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deliveryDate} is invalid.
+     */
+    public static JobDeliveryDate parseJobDeliveryDate(String deliveryDate) throws ParseException {
+        requireNonNull(deliveryDate);
+        String trimmedDeliveryDate = deliveryDate.trim();
+        if (!JobDeliveryDate.isValidJobDeliveryDate(deliveryDate)) {
+            throw new ParseException(JobDeliveryDate.MESSAGE_CONSTRAINTS);
+        }
+        return new JobDeliveryDate(trimmedDeliveryDate);
     }
 
     /**

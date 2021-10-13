@@ -14,39 +14,50 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" spacing="5" minHeight="105" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="title" text="\$first" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="deliveryDate" styleClass="cell_small_label" text="\$deliveryDate">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <FlowPane fx:id="status" />
+            <VBox id="jobInfo" alignment="CENTER_LEFT">
+                <HBox>
+                    <Label fx:id="id" styleClass="cell_big_label">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="title" styleClass="cell_big_label">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                </HBox>
+                <HBox>
+                    <Label fx:id="deliveryDate" styleClass="cell_small_label">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <FlowPane fx:id="status" />
+                </HBox>
+            </VBox>
+            <HBox spacing="10">
+                <VBox id="clientInfo">
+                    <Label fx:id="clientInfoHeader" styleClass="cell_medium_label" />
+                    <Label fx:id="phone" styleClass="cell_small_label" />
+                    <Label fx:id="address" styleClass="cell_small_label" />
+                    <Label fx:id="email" styleClass="cell_small_label" />
+                    <FlowPane fx:id="tags" />
+                </VBox>
+                <VBox id="productInfo">
+                    <Label fx:id="productInfoHeader" styleClass="cell_medium_label" />
+                    <Label fx:id="productType" styleClass="cell_small_label" />
+                    <Label fx:id="productManufacturer" styleClass="cell_small_label" />
+                    <Label fx:id="productDescription" styleClass="cell_small_label" />
+                </VBox>
             </HBox>
-            <padding>
-                <Insets top="5" bottom="5"/>
-            </padding>
-            <Label fx:id="clientInfo" styleClass="cell_medium_label" text="\$clientInfo" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <FlowPane fx:id="tags" />
         </VBox>
     </GridPane>
 </HBox>

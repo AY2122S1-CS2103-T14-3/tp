@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.model.job.Job;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
 import seedu.address.model.products.Product;
 import seedu.address.testutil.ContactBuilder;
@@ -127,6 +128,7 @@ public class MyCrmTest {
         private final ObservableList<Template> templates = FXCollections.observableArrayList();
         private final ObservableList<Product> products = FXCollections.observableArrayList();
         private final ObservableList<Job> jobs = FXCollections.observableArrayList();
+        private final ObservableList<Mail> mails = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Contact> persons) {
             this.persons.setAll(persons);
@@ -150,6 +152,11 @@ public class MyCrmTest {
         @Override
         public ObservableList<Job> getJobList() {
             return jobs;
+        }
+
+        @Override
+        public ObservableList<Mail> getMailList() {
+            return mails;
         }
     }
 

@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.job.Job;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
 import seedu.address.model.products.Product;
 import seedu.address.testutil.ProductBuilder;
@@ -125,6 +126,11 @@ public class AddProductCommandTest {
         }
 
         @Override
+        public void addMail(Mail mail) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addJob(Job job) {
 
         }
@@ -170,6 +176,11 @@ public class AddProductCommandTest {
         }
 
         @Override
+        public void deleteMail(Mail target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setContact(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
@@ -205,6 +216,11 @@ public class AddProductCommandTest {
         }
 
         @Override
+        public ObservableList<Mail> getFilteredMailList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Product> getFilteredProductList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -221,6 +237,11 @@ public class AddProductCommandTest {
 
         @Override
         public void updateFilteredTemplateList(Predicate<Template> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMailList(Predicate<Mail> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

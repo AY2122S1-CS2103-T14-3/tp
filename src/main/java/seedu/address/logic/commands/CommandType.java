@@ -1,5 +1,5 @@
 package seedu.address.logic.commands;
 
 public enum CommandType {
-    CONTACTS, JOBS, MAILS, PRODUCTS, HISTORY, EXIT, HELP, COMMON
+    CONTACTS, JOBS, TEMPLATE, MAIL, PRODUCTS, HISTORY, EXIT, HELP, COMMON,
 }

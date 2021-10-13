@@ -1,4 +1,4 @@
-package seedu.address.ui.contact;
+package seedu.address.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,8 +7,6 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.UiPart;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */

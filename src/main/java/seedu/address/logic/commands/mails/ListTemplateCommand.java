@@ -17,7 +17,7 @@ public class ListTemplateCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all templates";
 
-    private static final CommandType COMMAND_TYPE = CommandType.MAILS;
+    private static final CommandType COMMAND_TYPE = CommandType.TEMPLATE;
 
     @Override
     public CommandResult execute(Model model) {

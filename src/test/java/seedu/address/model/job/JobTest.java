@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalContacts.CARL;
 import static seedu.address.testutil.TypicalJobs.COMPLETED;
+import static seedu.address.testutil.TypicalProducts.SAMSUNG_SSD;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,8 @@ public class JobTest {
         // null -> returns false
         assertFalse(COMPLETED.isSameJob(null));
 
-        // same contact and job description with all other attributes different -> returns true
-        Job editedCompleted = new JobBuilder(COMPLETED).withDeliveryDate("12/12/19190")
+        // same contact, product and job description with all other attributes different -> returns true
+        Job editedCompleted = new JobBuilder(COMPLETED).withDeliveryDate("12/12/2012")
                 .withCompletionStatus(false).build();
         assertTrue(COMPLETED.isSameJob(editedCompleted));
 
@@ -31,6 +32,10 @@ public class JobTest {
 
         // different description, all other attributes same -> returns false
         editedCompleted = new JobBuilder(COMPLETED).withJobDescription("RANDOM JOB").build();
+        assertFalse(COMPLETED.isSameJob(editedCompleted));
+
+        // different product, all other attributes same -> returns false
+        editedCompleted = new JobBuilder(COMPLETED).withProduct(SAMSUNG_SSD).build();
         assertFalse(COMPLETED.isSameJob(editedCompleted));
     }
 

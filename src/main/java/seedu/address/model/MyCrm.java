@@ -11,7 +11,9 @@ import seedu.address.model.history.History;
 import seedu.address.model.history.UniqueHistoryList;
 import seedu.address.model.job.Job;
 import seedu.address.model.job.UniqueJobList;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
+import seedu.address.model.mail.UniqueMailList;
 import seedu.address.model.mail.UniqueTemplateList;
 import seedu.address.model.products.Product;
 import seedu.address.model.products.UniqueProductList;
@@ -53,6 +55,10 @@ public class MyCrm implements ReadOnlyAddressBook {
     private final UniqueHistoryList histories;
     {
         histories = new UniqueHistoryList();
+    }
+    private final UniqueMailList mails;
+    {
+        mails = new UniqueMailList();
     }
 
     public MyCrm() {}
@@ -108,6 +114,7 @@ public class MyCrm implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTemplates(newData.getTemplateList());
         setProducts(newData.getProductList());
+        setJobs(newData.getJobList());
     }
 
     //// person-level operations
@@ -150,6 +157,13 @@ public class MyCrm implements ReadOnlyAddressBook {
      */
     public void addTemplate(Template t) {
         templates.add(t);
+    }
+
+    /**
+     * Adds a mail to the address book.
+     */
+    public void addMail(Mail m) {
+        mails.add(m);
     }
 
     /**
@@ -216,6 +230,13 @@ public class MyCrm implements ReadOnlyAddressBook {
      */
     public void removeTemplate(Template key) {
         templates.remove(key);
+    }
+
+    /**
+     * Adds a mail to the address book.
+     */
+    public void removeMail(Mail key) {
+        mails.remove(key);
     }
 
     //// Product Methods
@@ -302,6 +323,9 @@ public class MyCrm implements ReadOnlyAddressBook {
     @Override
     public ObservableList<History> getHistoryList() {
         return histories.asUnmodifiableObservableList();
+}
+    public ObservableList<Mail> getMailList() {
+        return mails.asUnmodifiableObservableList();
     }
 
     @Override

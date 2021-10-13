@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.job;
 
 import java.util.Comparator;
 
@@ -7,7 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.job.Job;
+import seedu.address.model.products.Product;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Job}.
@@ -28,6 +31,8 @@ public class JobCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
+    // Job Info Fields
     @FXML
     private Label id;
     @FXML
@@ -36,8 +41,10 @@ public class JobCard extends UiPart<Region> {
     private Label deliveryDate;
     @FXML
     private FlowPane status;
+
+    // Client Info Fields
     @FXML
-    private Label clientInfo;
+    private Label clientInfoHeader;
     @FXML
     private Label phone;
     @FXML
@@ -47,27 +54,70 @@ public class JobCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    // Product Info Fields
+    @FXML
+    private Label productInfoHeader;
+    @FXML
+    private Label productName;
+    @FXML
+    private Label productType;
+    @FXML
+    private Label productManufacturer;
+    @FXML
+    private Label productDescription;
+
+
     /**
      * Creates a {@code JobCard} with the given {@code Job} and index to display.
      */
     public JobCard(Job job, int displayedIndex) {
         super(FXML);
         this.job = job;
+
+        setJobInfo(job, displayedIndex);
+        setClientInfo(job.getClient());
+        setProductInfo(job.getProduct());
+    }
+
+    private void setJobInfo(Job job, int displayedIndex) {
         id.setText(displayedIndex + ". ");
-        title.setText(job.getJobDescription().value + " - " + job.getClient().getName());
-        deliveryDate.setText("Expected Delivery: " + job.getDeliveryDate());
+
+        String titleText = job.getJobDescription().value;
+        if (job.getClient() != null) {
+            titleText = titleText + " - " + job.getClient().getName().fullName;
+        }
+        title.setText(titleText);
+
+        if (job.getDeliveryDate() != null) {
+            deliveryDate.setText("Expected Delivery: " + job.getDeliveryDate().toString());
+        }
+
         if (job.isCompleted()) {
             status.getChildren().add(new Label("Complete"));
         } else {
             status.getChildren().add(new Label("In Progress"));
         }
-        clientInfo.setText("Client Info");
-        phone.setText(job.getClient().getPhone().value);
-        address.setText(job.getClient().getAddress().value);
-        email.setText(job.getClient().getEmail().value);
-        job.getClient().getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setClientInfo(Contact client) {
+        if (client != null) {
+            clientInfoHeader.setText("Client Info: ");
+            phone.setText("Phone: " + client.getPhone().value);
+            address.setText("Address: " + client.getAddress().value);
+            email.setText("Email: " + client.getEmail().value);
+            client.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
+    }
+
+    private void setProductInfo(Product product) {
+        if (product != null) {
+            productInfoHeader.setText("Product: " + product.getName());
+            productType.setText("Type: " + product.getType().toString());
+            productManufacturer.setText("Manufacturer: " + product.getManufacturer().toString());
+            productDescription.setText("Description: " + product.getDescription().toString());
+        }
     }
 
     @Override

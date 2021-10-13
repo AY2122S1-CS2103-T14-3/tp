@@ -3,12 +3,17 @@ package seedu.address.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Optional;
+
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Represents a Contact's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email {
+public class Email implements ContactComponent<Email> {
 
+    private static final Email EMPTY_EMAIL = new Email();
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -31,7 +36,15 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+
     public final String value;
+
+    /**
+     * Constructs an {@code Email}.
+     */
+    public Email() {
+        value = null;
+    }
 
     /**
      * Constructs an {@code Email}.
@@ -49,6 +62,40 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static Email getEmail(String email) throws ParseException {
+        requireNonNull(email);
+
+        if (email.length() == 0) {
+            return EMPTY_EMAIL;
+        } else {
+            return ParserUtil.parseEmail(email);
+        }
+    }
+
+    public static Email getEmail(Optional<String> email) throws ParseException {
+        requireNonNull(email);
+
+        if (email.orElse("").length() == 0) {
+            return EMPTY_EMAIL;
+        } else {
+            return ParserUtil.parseEmail(email.get());
+        }
+    }
+
+    public static Email getEmptyEmail() {
+        return EMPTY_EMAIL;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this == EMPTY_EMAIL;
+    }
+
+    @Override
+    public String orElse(String alternativeString) {
+        return this.isEmpty() ? alternativeString : this.value;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class DeleteTemplateCommand extends Command {
 
     public static final String MESSAGE_DELETE_TEMPLATE_SUCCESS = "Deleted Template: %1$s";
 
-    private static final CommandType COMMAND_TYPE = CommandType.MAILS;
+    private static final CommandType COMMAND_TYPE = CommandType.TEMPLATE;
 
     private final Index targetIndex;
 

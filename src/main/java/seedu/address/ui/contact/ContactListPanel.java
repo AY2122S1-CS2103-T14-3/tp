@@ -27,22 +27,22 @@ public class ContactListPanel extends UiPart<Region> {
     public ContactListPanel(ObservableList<Contact> contactList) {
         super(FXML);
         contactListView.setItems(contactList);
-        contactListView.setCellFactory(listView -> new PersonListViewCell());
+        contactListView.setCellFactory(listView -> new ContactListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Contact> {
+    class ContactListViewCell extends ListCell<Contact> {
         @Override
-        protected void updateItem(Contact person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Contact contact, boolean empty) {
+            super.updateItem(contact, empty);
 
-            if (empty || person == null) {
+            if (empty || contact == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ContactCard(person, getIndex() + 1).getRoot());
+                setGraphic(new ContactCard(contact, getIndex() + 1).getRoot());
             }
         }
     }

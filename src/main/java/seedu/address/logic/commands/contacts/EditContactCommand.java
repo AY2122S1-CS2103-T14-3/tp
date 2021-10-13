@@ -76,30 +76,30 @@ public class EditContactCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Contact personToEdit = lastShownList.get(index.getZeroBased());
-        Contact editedPerson = createEditedPerson(personToEdit, editContactDescriptor);
+        Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        Contact editedContact = createEditedContact(contactToEdit, editContactDescriptor);
 
-        if (!personToEdit.isSameContact(editedPerson) && model.hasContact(editedPerson)) {
+        if (!contactToEdit.isSameContact(editedContact) && model.hasContact(editedContact)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
         }
 
-        model.setContact(personToEdit, editedPerson);
+        model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedContact), COMMAND_TYPE);
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Contact createEditedPerson(Contact personToEdit, EditContactDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editPersonDescriptor) {
+        assert contactToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(contactToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(contactToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(contactToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(contactToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(contactToEdit.getTags());
 
         return new Contact(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }

@@ -3,34 +3,45 @@ package seedu.address.model.job;
 import java.util.Objects;
 
 import seedu.address.model.contact.Contact;
+import seedu.address.model.products.Product;
 
 public class Job {
 
     private JobDescription jobDescription;
     private Contact client;
-    private String deliveryDate;
+    private Product product;
+    private JobDeliveryDate deliveryDate;
     private boolean isCompleted;
 
     /**
-     * Creates a job with the jobDescription and deliveryDate
+     * Creates a new repair job.
      *
-     * @param jobDescription
+     * @param jobDescription Description of the repair job.
+     * @param client The contact object that corresponds to the client making the job request.
+     * @param product The product object that is to be repaired.
+     * @param deliveryDate Expected date of delivery of repaired product.
      */
-    public Job(JobDescription jobDescription, String deliveryDate) {
+    public Job(JobDescription jobDescription, Contact client, Product product,
+               JobDeliveryDate deliveryDate, boolean completionStatus) {
         this.jobDescription = jobDescription;
-        this.client = null;
+        this.client = client;
+        this.product = product;
         this.deliveryDate = deliveryDate;
-        this.isCompleted = false;
+        this.isCompleted = completionStatus;
     }
 
     /**
-     * Creates a job with all fields.
+     * Creates a new job with the jobDescription and deliveryDate.
+     *
+     * @param jobDescription Description of the repair job.
+     * @param deliveryDate Expected date of delivery of repaired product.
      */
-    public Job(JobDescription jobDescription, Contact client, String deliveryDate, boolean completionStatus) {
+    public Job(JobDescription jobDescription, JobDeliveryDate deliveryDate) {
         this.jobDescription = jobDescription;
-        this.client = client;
+        this.client = null;
+        this.product = null;
         this.deliveryDate = deliveryDate;
-        this.isCompleted = completionStatus;
+        this.isCompleted = false;
     }
 
     public JobDescription getJobDescription() {
@@ -45,11 +56,19 @@ public class Job {
         this.client = client;
     }
 
-    public String getDeliveryDate() {
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public JobDeliveryDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(String deliveryDate) {
+    public void setDeliveryDate(JobDeliveryDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
@@ -62,7 +81,7 @@ public class Job {
     }
 
     /**
-     * Returns true if both jobs have the same client and description
+     * Returns true if both jobs have the same client, product and description
      * This defines a weaker notion of equality between two jobs.
      */
     public boolean isSameJob(Job otherJob) {
@@ -71,9 +90,9 @@ public class Job {
         }
 
         return otherJob != null
-            && otherJob.getJobDescription().equals(getJobDescription())
-            && otherJob.getClient().equals(getClient());
-
+                && Objects.equals(getJobDescription(), otherJob.getJobDescription())
+                && Objects.equals(getClient(), otherJob.getClient())
+                && Objects.equals(getProduct(), otherJob.getProduct());
     }
 
     /**
@@ -91,17 +110,26 @@ public class Job {
         }
 
         Job job = (Job) o;
-        return isCompleted() == job.isCompleted() && getJobDescription().equals(job.getJobDescription())
-                && getClient().equals(job.getClient()) && getDeliveryDate().equals(job.getDeliveryDate());
+        return isCompleted() == job.isCompleted()
+                && Objects.equals(getJobDescription(), job.getJobDescription())
+                && Objects.equals(getClient(), job.getClient())
+                && Objects.equals(getProduct(), job.getProduct())
+                && Objects.equals(getDeliveryDate(), job.getDeliveryDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getJobDescription(), getClient(), getDeliveryDate(), isCompleted());
+        return Objects.hash(getJobDescription(), getClient(),
+                getProduct(), getDeliveryDate(), isCompleted());
     }
 
     @Override
     public String toString() {
-        return String.format("Job Description: %s; Client: %s", jobDescription, client);
+        String jobString = jobDescription.toString();
+
+        if (client != null) {
+            jobString += String.format(" for %s", client.getName().fullName);
+        }
+        return jobString;
     }
 }

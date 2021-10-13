@@ -75,7 +75,7 @@ applications.
 
 Adds a new repair job to the CRM.
 
-Format: `addJob d/DESCRIPTION c/CLIENT_INDEX p/PRODUCT_INDEX by/DELIVERY_DATE`
+Format: `addJob d/DESCRIPTION [c/CONTACT_INDEX] [p/PRODUCT_INDEX] [by/DELIVERY_DATE]`
 
 * Creates a new repair job.
 * Links the contact and product that correspond to `CONTACT_INDEX` and `PRODUCT_INDEX` (in the res
@@ -83,11 +83,11 @@ Format: `addJob d/DESCRIPTION c/CLIENT_INDEX p/PRODUCT_INDEX by/DELIVERY_DATE`
 
 Examples:
 
-* `addJob d/Graphics card replacement needed c/1 p/2 by/15/09/2021`
+* `addJob d/CPU replacement needed c/1 p/1 by/15/09/2021`
 
 * Then the addJob command is complete and the user sees the following screen:
 
-    <img src="images/ui-addJob-success.jpg" width="600px">
+    <img src="images/ui-addJob-success.png" width="600px">
 
 ### Listing all jobs: `listJob`
 
@@ -295,7 +295,7 @@ contains the data of your previous MyCRM home folder.
 
 Action              | Format, Examples
 --------------------|------------------
-**Add Job**         | `addJob d/DESCRIPTION c/CLIENT_INDEX p/PRODUCT_INDEX by/DELIVERY_DATE` <br>e.g., `addJob d/Graphics card replacement needed c/1 p/2 by/15/09/2021`
+**Add Job**         | `addJob d/DESCRIPTION c/CONTACT_INDEX p/PRODUCT_INDEX by/DELIVERY_DATE` <br>e.g., `addJob d/CPU replacement needed c/1 p/1 by/15/09/2021`
 **List Job**        | `listJob`
 **Delete Job**      | `deleteJob INDEX` <br>e.g., `deleteJob 2`
 **Add Contact**     | `addContact n/CLIENT_NAME c/CONTACT_NUMBER e/EMAIL a/ADDRESS` <br>e.g., `addContact n/Frisk c/93487234 e/Frisk@gmail.com a/Laptop Factory Outlet Bugis Junction`

@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalContacts.BENSON;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +12,10 @@ import seedu.address.model.job.Job;
 public class TypicalJobs {
 
     public static final Job COMPLETED = new JobBuilder().withCompletionStatus(true).build();
+
+    public static final Job INCOMPLETE = new JobBuilder().withCompletionStatus(false).build();
+
+    public static final Job BENSON_JOB = new JobBuilder().withClient(BENSON).build();
 
     private TypicalJobs() {}
 

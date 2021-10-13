@@ -14,7 +14,6 @@ import seedu.address.logic.commands.contacts.AddContactCommand;
 import seedu.address.logic.commands.contacts.DeleteContactCommand;
 import seedu.address.logic.commands.contacts.EditContactCommand;
 import seedu.address.logic.commands.contacts.FindContactCommand;
-import seedu.address.logic.commands.contacts.LinkContactCommand;
 import seedu.address.logic.commands.contacts.ListContactCommand;
 import seedu.address.logic.commands.history.HistoryCommand;
 import seedu.address.logic.commands.jobs.AddJobCommand;
@@ -23,6 +22,7 @@ import seedu.address.logic.commands.jobs.ListJobCommand;
 import seedu.address.logic.commands.mails.AddTemplateCommand;
 import seedu.address.logic.commands.mails.DeleteTemplateCommand;
 import seedu.address.logic.commands.mails.ListTemplateCommand;
+import seedu.address.logic.commands.mails.MailCommand;
 import seedu.address.logic.commands.products.AddProductCommand;
 import seedu.address.logic.commands.products.DeleteProductCommand;
 import seedu.address.logic.commands.products.EditProductCommand;
@@ -31,12 +31,12 @@ import seedu.address.logic.parser.contacts.AddContactCommandParser;
 import seedu.address.logic.parser.contacts.DeleteContactCommandParser;
 import seedu.address.logic.parser.contacts.EditContactCommandParser;
 import seedu.address.logic.parser.contacts.FindContactCommandParser;
-import seedu.address.logic.parser.contacts.LinkContactCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.jobs.AddJobCommandParser;
 import seedu.address.logic.parser.jobs.DeleteJobCommandParser;
 import seedu.address.logic.parser.mails.AddTemplateCommandParser;
 import seedu.address.logic.parser.mails.DeleteTemplateCommandParser;
+import seedu.address.logic.parser.mails.MailCommandParser;
 import seedu.address.logic.parser.products.AddProductCommandParser;
 import seedu.address.logic.parser.products.DeleteProductCommandParser;
 import seedu.address.logic.parser.products.EditProductCommandParser;
@@ -86,9 +86,6 @@ public class MyCrmParser {
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
-        case LinkContactCommand.COMMAND_WORD:
-            return new LinkContactCommandParser().parse(arguments);
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -115,6 +112,9 @@ public class MyCrmParser {
 
         case DeleteTemplateCommand.COMMAND_WORD:
             return new DeleteTemplateCommandParser().parse(arguments);
+
+        case MailCommand.COMMAND_WORD:
+            return new MailCommandParser().parse(arguments);
 
         case AddJobCommand.COMMAND_WORD:
             return new AddJobCommandParser().parse(arguments);

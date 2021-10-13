@@ -53,12 +53,13 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           <StackPane fx:id="templateListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="mailListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           <StackPane fx:id="productListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           <StackPane fx:id="jobListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           <StackPane fx:id="historyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusBarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

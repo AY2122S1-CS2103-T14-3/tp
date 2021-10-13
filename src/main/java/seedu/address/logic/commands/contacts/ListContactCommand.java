@@ -9,7 +9,7 @@ import seedu.address.logic.commands.CommandType;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all contacts in the address book to the user.
  */
 public class ListContactCommand extends Command {
 

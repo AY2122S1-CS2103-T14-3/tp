@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.history.History;
 import seedu.address.model.job.Job;
+import seedu.address.model.mail.Mail;
 import seedu.address.model.mail.Template;
 import seedu.address.model.products.Product;
 
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Contact> filteredPersons;
     private final FilteredList<Template> filteredTemplates;
+    private final FilteredList<Mail> filteredMails;
     private final FilteredList<Job> filteredJobs;
     private final FilteredList<Product> filteredProducts;
     private final FilteredList<History> filteredHistories;
@@ -44,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTemplates = new FilteredList<>(this.addressBook.getTemplateList());
+        filteredMails = new FilteredList<>(this.addressBook.getMailList());
         filteredJobs = new FilteredList<>(this.addressBook.getJobList());
         filteredProducts = new FilteredList<>(this.addressBook.getProductList());
         filteredHistories = new FilteredList<>(this.addressBook.getHistoryList());
@@ -130,11 +133,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTemplate(Template target) {
-        addressBook.removeTemplate(target);
-    }
-
-    @Override
     public void deleteJob(Job target) {
         addressBook.removeJob(target);
     }
@@ -149,6 +147,22 @@ public class ModelManager implements Model {
     public void addTemplate(Template template) {
         addressBook.addTemplate(template);
         updateFilteredTemplateList(PREDICATE_SHOW_ALL_TEMPLATES);
+    }
+
+    @Override
+    public void deleteTemplate(Template target) {
+        addressBook.removeTemplate(target);
+    }
+
+    @Override
+    public void addMail(Mail mail) {
+        addressBook.addMail(mail);
+        updateFilteredMailList(PREDICATE_SHOW_ALL_MAILS);
+    }
+
+    @Override
+    public void deleteMail(Mail target) {
+        addressBook.removeMail(target);
     }
 
     @Override
@@ -218,6 +232,15 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns an unmodifiable view of the list of {@code Mail} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Mail> getFilteredMailList() {
+        return filteredMails;
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Product} backed by the internal list of
      * {@code versionedAddressBook}
      */
@@ -246,6 +269,12 @@ public class ModelManager implements Model {
     public void updateFilteredTemplateList(Predicate<Template> predicate) {
         requireNonNull(predicate);
         filteredTemplates.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredMailList(Predicate<Mail> predicate) {
+        requireNonNull(predicate);
+        filteredMails.setPredicate(predicate);
     }
 
     @Override

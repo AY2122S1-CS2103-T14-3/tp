@@ -309,15 +309,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a repair job and specifies a job description, client and product.
-2. MyCRM creates a new repair job with the job description and associates a repair job with
+1. User provides details to add a repair job.
+2. MyCRM creates a new repair job with the provided job description and associates a repair job with
    a product and contact.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User does not specify a job description, contact or product.
+* 1a. User does not provide all the necessary details needed for the creation of a job. 
 
     * 1a1. MyCRM shows an error message and requests for the missing details.
     * 1a2. User enters the missing details.
